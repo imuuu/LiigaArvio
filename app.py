@@ -5,7 +5,9 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
 import re
+import subprocess
 import sys
 import threading
 import urllib.parse
@@ -163,6 +165,7 @@ def main():
     parser.add_argument("--demo", action="store_true", help="Käytä VAIN keksittyä testidataa")
     parser.add_argument("--check", action="store_true", help="Testaa datalähteen verkkoyhteys ja poistu")
     parser.add_argument("--cache-dir", type=Path)
+    parser.add_argument("--no-update", action="store_true", help="Älä hae päivityksiä GitHubista käynnistyksessä")
     args = parser.parse_args()
     if not 1024 <= args.port <= 65525:
         parser.error("Portin on oltava välillä 1024–65525.")
@@ -205,4 +208,14 @@ if __name__ == "__main__":
     if sys.version_info < (3, 10):
         print("LiigaArvio tarvitsee Python 3.10:n tai uudemman.")
         sys.exit(1)
+    if "--no-update" not in sys.argv and "-h" not in sys.argv and "--help" not in sys.argv:
+        from liigaarvio import updater
+        if updater.update(ROOT):
+            # Modules already imported are the old version: restart once with the new code.
+            print("Käynnistetään päivitetty versio...\n")
+            env = dict(os.environ, **{updater.SKIP_ENV: "1"})
+            try:
+                sys.exit(subprocess.call([sys.executable, str(ROOT / "app.py"), *sys.argv[1:]], env=env))
+            except KeyboardInterrupt:
+                sys.exit(0)
     sys.exit(main())

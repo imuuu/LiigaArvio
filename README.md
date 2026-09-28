@@ -4,7 +4,7 @@ Paikallinen, suomenkielinen sovellus Liigan **runkosarjaotteluiden** tulosten ar
 
 ## Käynnistä Windowsissa
 
-1. Pura koko ZIP tavalliseen kansioon. Älä käynnistä suoraan pakatun ZIP:n sisältä.
+1. Kloonaa repo: `git clone https://github.com/imuuu/LiigaArvio.git` (tai pura ZIP tavalliseen kansioon, mutta silloin automaattipäivitys ei toimi).
 2. Koneella pitää olla **Python 3.10 tai uudempi**. Ohjelma ei tarvitse pip-paketteja.
 3. Avaa **`KAYNNISTA.bat`**. Sovellus avaa selaimen. Pidä komentorivi-ikkuna auki.
 
@@ -13,6 +13,12 @@ Sulkeminen: **Ctrl+C** käynnistysikkunassa. Selainvälilehden sulkeminen ei yks
 Jos selain ei avaudu, avaa käynnistysikkunassa näkyvä osoite, tavallisesti `http://127.0.0.1:8765`. Varatun portin tilalle kokeillaan automaattisesti seuraavia portteja. Et tarvitse ylläpitäjän oikeuksia, pilvipalvelua, kirjautumista tai API-avainta.
 
 Pythonin virallinen asennussivu: https://www.python.org/downloads/windows/
+
+### Automaattipäivitys
+
+Jokaisella käynnistyksellä sovellus tarkistaa GitHubista (`git fetch`), onko repoon tullut uusia muutoksia. Jos on, ne haetaan (`git merge --ff-only`) ja sovellus käynnistyy uudelleen uudella koodilla. Päivitys ei koskaan estä käynnistystä: jos verkkoa ei ole, git puuttuu tai kansiossa on omia muokkauksia, jotka estäisivät päivityksen, käynnistetään nykyinen versio ja ikkunaan tulostetaan syy.
+
+Päivityksen voi ohittaa valitsimella `--no-update` tai ympäristömuuttujalla `LIIGAARVIO_NO_UPDATE=1`.
 
 Mac/Linux: `python3 app.py` tai `./start.sh`. Päivä ja otteluiden ajat lasketaan **Suomen ajassa**, vaikka koneesi olisi muualla. Windows ilman `tzdata`-pakettia käyttää varajärjestelmänä Suomen EU-kesäaikasääntöä; sitä ei tarvitse asentaa erikseen.
 
