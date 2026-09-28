@@ -1,0 +1,31 @@
+LIIGAARVIO 1.0
+==============
+
+1. Pura koko ZIP-tiedosto tavalliseen kansioon.
+2. Asenna Python 3.10 tai uudempi, ellei sitä jo ole koneella.
+3. Kaksoisnapsauta KAYNNISTA.bat.
+4. Selaimeen avautuu sovellus. Valitse Tänään/Huomenna ja ottelu.
+
+Pidä käynnistysikkuna auki. Sulkeminen: Ctrl+C käynnistysikkunassa.
+Ei pip-asennuksia, maksullista palvelua tai API-avainta.
+Käynnistys ei asenna mitään automaattisesti eikä tarvitse järjestelmänvalvojaa.
+
+TARKISTA_YHTEYS.bat tekee Liigan datalähteeseen yhteystestin.
+KAYNNISTA_DEMO.bat avaa saman käyttöliittymän keksityllä testidatalla.
+Demoon EI vaihdeta automaattisesti, vaikka verkkohaku epäonnistuisi.
+
+TÄRKEÄ JULKAISURAJAUS
+Laskenta ja käyttöliittymä on testattu paikallisesti. Tästä
+rakennusympäristöstä ei saatu Liiga.fi:n live-JSON-vastetta, joten
+live-hakua ei ole vahvistettu päästä päähän. Datan saatavuutta ei luvata.
+Sovellus yrittää oikeita Liiga.fi-kutsuja omalta koneeltasi ja näyttää
+virheen tai näkyvästi merkityn vanhan välimuistin, jos haku ei onnistu.
+
+Tämä versio kattaa vain Liigan runkosarjan, ei pudotuspelejä tai muita sarjoja.
+Malli ei huomioi kokoonpanoja, maalivahteja eikä loukkaantumisia.
+Prosentit ovat kalibroimattoman tilastomallin arvioita, eivät varmoja tuloksia.
+
+Lisäohjeet: README.md
+Kaikki laskentasäännöt: MALLI_JA_LASKENTA.md
+Datalähteet ja JSON-kutsut: DATALAHTEET.md
+Testauksen rajat: TESTIRAPORTTI.md

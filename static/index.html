@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Paikallinen Liigan otteluiden tilastollinen arviointisovellus.">
+  <title>LiigaArvio</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div id="demoBanner" class="demo-banner" hidden>DEMO · KEKSITTY TESTIDATA · Ei oikeita joukkueita, otteluita tai ennusteita.</div>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="LiigaArvio etusivu"><span class="brand-mark">LA</span><span>Liiga<span class="muted">Arvio</span></span></a>
+      <div class="top-right"><span class="league-label">LIIGA / RUNKOSARJA</span><span class="version">v1.0</span></div>
+    </header>
+    <section class="page-heading">
+      <div><div class="eyebrow">OTTELUIDEN ARVIOINTI</div><h1>Pelit. Luvut. Arviot.</h1><p>Valitse ottelu. Katso tulosarvio ja mistä se syntyy.</p></div>
+      <div class="connection"><span id="statusDot" class="status-dot"></span><div><strong id="sourceStatus">Yhdistetään</strong><small id="sourceTime">Ajat Suomen ajassa</small></div></div>
+    </section>
+    <section class="toolbar" aria-label="Päivän valinta">
+      <div class="date-controls">
+        <div class="segmented"><button id="todayBtn" type="button">Tänään</button><button id="tomorrowBtn" type="button">Huomenna</button></div>
+        <div class="calendar-controls"><button id="prevDayBtn" class="icon-button" type="button" aria-label="Edellinen päivä">‹</button><input id="dateInput" type="date" aria-label="Valitse ottelupäivä" min="2001-01-01" max="2099-12-31"><button id="nextDayBtn" class="icon-button" type="button" aria-label="Seuraava päivä">›</button></div>
+      </div>
+      <button id="refreshBtn" type="button" class="secondary">↻ <span>Päivitä</span></button>
+    </section>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <main class="layout">
+      <aside class="sidebar">
+        <div class="section-head"><h2>Ottelut</h2><span id="gameCount" class="count">—</span></div>
+        <p id="dayLabel" class="day-label"></p>
+        <div id="games" class="game-list" aria-live="polite"></div>
+        <div class="sidebar-note"><span class="small-label">LÄPINÄKYVÄ MALLI</span><p>Kauden maalit, viime pelit,<br>koti/vieras ja keskinäiset.</p><div class="hairline"></div><small>Ei API-avainta. Ei tekoälykuluja.<br>Laskenta tapahtuu koneellasi.</small></div>
+      </aside>
+      <section class="workspace" aria-label="Otteluanalyysi">
+        <div id="matchHeader"></div>
+        <nav id="tabs" class="tabs" aria-label="Analyysin näkymät" hidden>
+          <button type="button" data-tab="summary" class="active">Yhteenveto</button>
+          <button type="button" data-tab="math">Laskelmat</button>
+          <button type="button" data-tab="history">Otteluhistoria</button>
+          <button type="button" data-tab="sources">Lähteet</button>
+          <button type="button" data-tab="backtest">Historiatesti</button>
+        </nav>
+        <div id="analysis" aria-live="polite"><div class="empty"><div class="empty-symbol">—</div><h2>Haetaan otteluohjelmaa</h2><p>Ohjelma hakee valitun päivän pelit Liigan tietolähteestä.</p></div></div>
+      </section>
+    </main>
+    <footer><span>LiigaArvio · Riippumaton tilastotyökalu, ei Liigan virallinen sovellus.</span><span>Arvio ei ole varma tulos. Malliprosentteja ei ole kalibroitu.</span></footer>
+  </div>
+</body>
+</html>
